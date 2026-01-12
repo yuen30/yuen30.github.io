@@ -1,75 +1,114 @@
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { ShareButtons } from '@/components/ShareButtons';
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
+// Define the path to your content directory
+const CONTENT_DIR = path.join(process.cwd(), 'content');
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+// Get all MDX files from the content directory
+const getAllPosts = () => {
+  const files = fs.readdirSync(CONTENT_DIR);
+  const posts = files
+    .filter(file => file.endsWith('.mdx'))
+    .map(file => {
+      const slug = file.replace(/\.mdx$/, '');
+      const filePath = path.join(CONTENT_DIR, file);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContents);
+      
+      return {
+        slug,
+        frontmatter: data,
+      };
+    })
+    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
-  try {
-    const { default: Post } = await import('@/content/' + slug + '.mdx');
+  return posts;
+};
 
-    return (
-      <main className='min-h-screen relative'>
-        <div className='mesh-bg opacity-30'>
-          <div className='mesh-blob bg-indigo-600/20 top-[10%] left-[10%]' />
-          <div className='mesh-blob bg-purple-600/20 bottom-[20%] right-[15%]' />
-        </div>
-
-        <Navbar />
-
-        <div className='relative z-10 pt-32 pb-20 px-6'>
-          <article className='max-w-3xl mx-auto'>
-            <Link
-              href='/'
-              className='inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-12 transition-colors group'
-            >
-              <ArrowLeft size={18} className='group-hover:-translate-x-1 transition-transform' />
-              Back to Home
-            </Link>
-
-            <div className='prose prose-invert prose-indigo lg:prose-xl max-w-none'>
-              <Post />
-            </div>
-          </article>
-        </div>
-
-        <Footer />
-      </main>
-    );
-  } catch (error) {
-    return (
-      <div className='min-h-screen flex items-center justify-center p-6 text-center'>
-        <div>
-          <h1 className='text-4xl font-bold mb-4'>Post Not Found</h1>
-          <p className='text-white/40 mb-8'>The article you are looking for does not exist.</p>
-          <Link href='/' className='btn-primary'>Return Home</Link>
-        </div>
-      </div>
-    );
-  }
+// Get all post slugs for static generation
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map(post => ({
+    slug: post.slug,
+  }));
 }
 
-export async function generateStaticParams() {
-  try {
-    const contentPath = path.join(process.cwd(), 'content');
-    const files = fs.readdirSync(contentPath);
-    
-    return files
-      .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
-      .map((file) => ({
-        slug: file.replace(/\.mdx?$/, ''),
-      }));
-  } catch (e) {
-    console.error('Error in generateStaticParams:', e);
-    return [];
+// Define props type for the component
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+// Main component
+export default function PostPage({ params }: PostPageProps) {
+  const { slug } = params;
+
+  // Find the post that matches the slug
+  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) {
+    notFound(); // This triggers the 404 page
   }
+
+  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const { content, data } = matter(fileContents);
+
+  // Construct the full URL for sharing
+  const fullUrl = `https://taweechai.dev/blog/${slug}`;
+
+  return (
+    <article className="max-w-4xl mx-auto px-6 py-12">
+      <header className="mb-12">
+        <div className="flex flex-wrap items-center gap-4 text-sm text-white/60 mb-4">
+          <span className="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 font-bold uppercase tracking-widest">
+            {data.category || 'Article'}
+          </span>
+          <time dateTime={data.date}>
+            {new Date(data.date).toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </time>
+          <span>{data.readTime || '5 min read'}</span>
+        </div>
+        
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          {data.title}
+        </h1>
+        
+        <p className="text-xl text-white/70 mb-8">
+          {data.excerpt}
+        </p>
+        
+        <div className="flex items-center justify-between py-6 border-y border-white/10">
+          <div className="text-sm text-white/60">
+            Written by {data.author || 'Taweechai Yuenyang'}
+          </div>
+          
+          <ShareButtons 
+            title={data.title} 
+            url={fullUrl} 
+            className="flex gap-2"
+          />
+        </div>
+      </header>
+      
+      <div className="prose prose-invert max-w-none">
+        <MDXRemote source={content} />
+      </div>
+      
+      <footer className="mt-16 pt-8 border-t border-white/10">
+        <ShareButtons 
+          title={data.title} 
+          url={fullUrl} 
+          className="flex gap-2"
+        />
+      </footer>
+    </article>
+  );
 }

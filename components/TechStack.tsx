@@ -12,10 +12,10 @@ const skills = [
 
 export const TechStack = () => {
     return (
-        <section id="skills" className="py-24 px-6 bg-white/[0.02]">
+        <section id="skills" className="py-24 px-6 bg-white/[0.02]" aria-labelledby="skills-title">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    <h2 id="skills-title" className="text-3xl md:text-4xl font-bold mb-4">
                         Technical <span className="text-gradient">Arsenal</span>
                     </h2>
                     <p className="text-white/40 max-w-2xl mx-auto">
@@ -23,7 +23,7 @@ export const TechStack = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
                     {skills.map((skillGroup, i) => (
                         <motion.div
                             key={skillGroup.category}
@@ -32,20 +32,18 @@ export const TechStack = () => {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
                             className="glass-card p-8 group hover:bg-white/[0.05] transition-all"
+                            role="listitem"
                         >
                             <h3 className="text-sm font-bold uppercase tracking-widest text-indigo-400 mb-6">
                                 {skillGroup.category}
                             </h3>
-                            <div className="flex flex-wrap gap-3">
+                            <ul className="flex flex-wrap gap-3" role="list" aria-label={`Skills in ${skillGroup.category}`}>
                                 {skillGroup.items.map((skill) => (
-                                    <span
-                                        key={skill}
-                                        className="text-white/70 font-medium group-hover:text-white transition-colors"
-                                    >
+                                    <li key={skill} className="text-white/70 font-medium group-hover:text-white transition-colors" role="listitem">
                                         {skill}
-                                    </span>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
                         </motion.div>
                     ))}
                 </div>
