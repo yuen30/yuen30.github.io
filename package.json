@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "rm -rf .next&& rm -f next-env.d.ts&&bun --bun next dev --port=3001 --turbopack",
-    "build": "rm -rf .next&& rm -f next-env.d.ts&&bun --bun next build",
+    "dev": "rm -rf ./out&&rm -rf .next&& rm -f next-env.d.ts&&bun --bun next dev --port=3001 --turbopack",
+    "build": "rm -rf ./out&&rm -rf .next&& rm -f next-env.d.ts&&bun --bun next build",
     "start": "bun --bun next start",
     "lint": "eslint"
   },

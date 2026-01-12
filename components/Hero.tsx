@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const Hero = () => {
     return (
-        <section className="relative pt-32 pb-20 px-6">
+        <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-20 px-6">
             <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -46,10 +46,16 @@ export const Hero = () => {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="flex flex-col sm:flex-row gap-4"
                 >
-                    <button className="btn-primary flex items-center gap-2">
+                    <button
+                        onClick={() => document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="btn-primary flex items-center gap-2"
+                    >
                         Read My Blog <ArrowRight size={18} />
                     </button>
-                    <button className="px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all font-medium">
+                    <button
+                        onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all font-medium"
+                    >
                         View Projects
                     </button>
                 </motion.div>
