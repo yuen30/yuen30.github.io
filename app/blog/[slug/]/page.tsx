@@ -54,8 +54,16 @@ export default async function BlogPostPage({
     }
 }
 
+import fs from "fs";
+import path from "path";
+
 export async function generateStaticParams() {
-    // In a real app, you'd read the file system here
-    // For now, let's return the slug we just created
-    return [{ slug: 'building-modern-portfolio' }];
+    const contentPath = path.join(process.cwd(), "content");
+    const files = fs.readdirSync(contentPath);
+
+    return files
+        .filter((file) => file.endsWith(".mdx") || file.endsWith(".md"))
+        .map((file) => ({
+            slug: file.replace(/\.mdx?$/, ""),
+        }));
 }

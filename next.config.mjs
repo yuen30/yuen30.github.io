@@ -10,7 +10,8 @@ const nextConfig = {
     experimental: {
         mdxRs: true,
     },
-}
+    trailingSlash: true,
+};
 
 const withMDX = createMDX({
     extension: /\.mdx?$/,
