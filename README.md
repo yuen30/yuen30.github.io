@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ทวีชัย ยืนยั่ง (Taweechai Yuenyang)
+**Software Developer**
 
-## Getting Started
+📧 taweechai.yue@outlook.co.th  
+📞 066-109-0602  
+📍 197/121 หมู่ 7 ต.วังเย็น อ.แปลงยาว จ.ฉะเชิงเทรา 24190  
+🔗 GitHub: https://github.com/yuen30, https://github.com/abe27  
 
-First, run the development server:
+ผ่านการเกณฑ์ทหารแล้ว · มีใบขับขี่
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Professional Summary
+Full-Stack Developer ประสบการณ์มากกว่า 10 ปี  
+เชี่ยวชาญการพัฒนา **Enterprise Systems (ERP/WMS)** และ **Industrial IoT (PLC/WebSocket)**  
+ครอบคลุมตั้งแต่การออกแบบ Database, Backend/Frontend ไปจนถึง **CI/CD และ Infrastructure**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💼 Work Experience
 
-## Learn More
+### Senior Programmer  
+**VCS Thailand Co., Ltd.**  
+_03/2023 – Present_
 
-To learn more about Next.js, take a look at the following resources:
+- **Infrastructure & Virtualization**  
+  - บริหารจัดการ Linux Server (Ubuntu, Alpine)
+- **Odoo & ERP**  
+  - พัฒนา Forecast Module  
+  - ระบบ MRP, BOM, PDS, EDI (Django / Laravel)
+- **Industrial IoT**  
+  - พัฒนา Real-time PLC Dashboard ด้วย NextJS + WebSocket  
+  - เชื่อมต่อเครื่องจักรแบบ Real-time
+- **CI/CD & DevOps**  
+  - ออกแบบ GitHub Actions  
+  - Deployment ด้วย Docker และ Podman
+- **System Integration**  
+  - พัฒนา API เชื่อมระบบบัญชี Formula
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Programmer  
+**เซอิวา ไพโอเนียร์ โลจิสติกส์ จำกัด (Seiwa Pioneer Logistics)**  
+_05/2019 – 03/2023_
 
-## Deploy on Vercel
+- **WMS Full-Cycle**  
+  - ระบบคลังสินค้า Inbound / Outbound  
+  - ประมวลผล Order Plan จาก EDI
+- **Automation**  
+  - ใช้ GitHub Actions จัดการ Pipeline  
+  - พัฒนา Python Bot สำหรับ EDI Automation
+- **Hardware Integration**  
+  - เชื่อม Raspberry Pi ควบคุมจอ LED แสดงผล Real-time
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Programmer  
+**YSS Thailand**  
+_06/2015 – 05/2019_
+
+- พัฒนา REST API ด้วย Django  
+- พัฒนา PWA ด้วย NuxtJS  
+- ดูแลระบบ CRM (http://ysscrm.com)  
+- ระบบประเมินออนไลน์ด้วย Laravel
+
+---
+
+### Programmer / IT Support  
+**เซอิวา ไพโอเนียร์ โลจิสติกส์ จำกัด (Seiwa Pioneer Logistics)**  
+_01/2014 – 06/2015_
+
+- พัฒนาระบบภายในด้วย VB.Net  
+- ดูแล IT Infrastructure / Support  
+- ออกแบบระบบ Location คลังสินค้า  
+- วิเคราะห์สินค้าค้างสต็อก (Slow Move)
+
+---
+
+## 📜 Education
+
+- **มหาวิทยาลัยราชภัฏกาฬสินธุ์**  
+  ปริญญาตรี บธ.บ. คอมพิวเตอร์ธุรกิจ
+- **วิทยาลัยชุมชนมุกดาหาร**  
+  ปวส. คอมพิวเตอร์ธุรกิจ
+
+---
+
+## 🛠 Technical Skills
+
+### Web Development
+- NextJS
+- Django
+- Laravel (Filament)
+- Node.js
+- Python
+
+### Infrastructure & DevOps
+- GitHub Actions (CI/CD)
+- Docker / Podman
+- Linux Server (Ubuntu / Alpine)
+- Cloudflare Tunnel
+- Power Automate
+
+### Specialized Technologies
+- Odoo Customization
+- Formula Integration
+- PLC Integration (WebSocket)
+- EDI Automation
+
+### Data & Reporting
+- JasperReports
+- PostgreSQL, MSSQL, Oracle
+- Inventory Analytics
+- Power BI
+
+---
+
+## ℹ️ Additional Information
+
+- **ภาษาไทย:** Native  
+- **ภาษาอังกฤษ:** Fair (Technical Research & Documentation)
+- **ใบขับขี่:** มีรถยนต์ส่วนตัว  
+- **สถานะทางทหาร:** ผ่านการเกณฑ์ทหารแล้ว
+
+---
+
+## 📚 Education & Skill Up
+
+- **2567** Power Automate Professional — TDEM  
+- AI & Machine Learning with Python, Blockchain — Udemy (Self-Learning)
