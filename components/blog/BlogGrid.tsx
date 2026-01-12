@@ -6,32 +6,36 @@ import { BlogCard } from "./BlogCard";
 
 const blogs = [
     {
+        title: "Building a Modern Portfolio with Next.js 15",
+        excerpt: "Exploring the journey of migrating to the latest Next.js features and leveraging Turbopack for lightning-fast development.",
+        category: "Web Tech",
+        date: "Mar 20, 2024",
+        readTime: "5 min read",
+        slug: "building-modern-portfolio"
+    },
+    {
         title: "Real-time PLC Dashboards with NextJS",
         excerpt: "Integrating WebSocket with Industrial machines for live performance monitoring and machine state tracking.",
         category: "Industrial IoT",
         date: "Jan 12, 2026",
-        readTime: "10 min read"
+        readTime: "10 min read",
+        slug: "plc-dashboards"
     },
     {
         title: "Customizing Odoo for MRP & ERP",
         excerpt: "Best practices for developing MRP, BOM, and EDI modules using Python and Django within Odoo ecosystem.",
         category: "ERP Development",
         date: "Jan 10, 2026",
-        readTime: "15 min read"
+        readTime: "15 min read",
+        slug: "odoo-erp-mrp"
     },
     {
         title: "Full-Cycle WMS Architecture",
         excerpt: "Designing scalable Warehouse Management Systems from Inbound/Outbound logic to EDI processing.",
         category: "Logistics Tech",
         date: "Jan 08, 2026",
-        readTime: "12 min read"
-    },
-    {
-        title: "DevOps for Manufacturing",
-        excerpt: "Using GitHub Actions, Docker, and Podman to streamline deployment in sensitive industrial environments.",
-        category: "DevOps",
-        date: "Jan 05, 2026",
-        readTime: "8 min read"
+        readTime: "12 min read",
+        slug: "wms-architecture"
     }
 ];
 

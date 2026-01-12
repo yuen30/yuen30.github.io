@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 interface BlogCardProps {
     title: string;
@@ -10,10 +11,11 @@ interface BlogCardProps {
     category: string;
     date: string;
     readTime: string;
+    slug: string;
 }
 
-export const BlogCard = ({ title, excerpt, category, date, readTime }: BlogCardProps) => {
-    return (
+export const BlogCard = ({ title, excerpt, category, date, readTime, slug }: BlogCardProps) => {
+    const cardContent = (
         <motion.div
             whileHover={{ y: -10 }}
             className="glass-card p-6 h-full flex flex-col group cursor-pointer hover:border-indigo-500/50 transition-all"
@@ -44,5 +46,11 @@ export const BlogCard = ({ title, excerpt, category, date, readTime }: BlogCardP
                 </div>
             </div>
         </motion.div>
+    );
+
+    return (
+        <Link href={`/blog/${slug}`}>
+            {cardContent}
+        </Link>
     );
 };

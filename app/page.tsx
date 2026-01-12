@@ -1,8 +1,14 @@
+"use client";
+
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { TechStack } from "@/components/TechStack";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BlogGrid } from "@/components/blog/BlogGrid";
+import { Certifications } from "@/components/Certifications";
 import { Footer } from "@/components/Footer";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -19,8 +25,14 @@ export default function Home() {
       <div className="relative z-10">
         <Hero />
 
-        {/* Statistics Section (Optional Premium Touch) */}
-        <section className="py-10 px-6">
+        {/* Statistics Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-10 px-6"
+        >
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { label: "Articles", value: "40+" },
@@ -38,14 +50,26 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
+
+        <ExperienceTimeline />
+
+        <TechStack />
 
         <ProjectGrid />
+
+        <Certifications />
 
         <BlogGrid />
 
         {/* Newsletter / CTA Section */}
-        <section className="py-24 px-6 relative overflow-hidden">
+        <motion.section
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 px-6 relative overflow-hidden"
+        >
           <div className="max-w-5xl mx-auto glass-card p-12 relative z-10 text-center">
             <h2 className="text-3xl font-bold mb-4">Stay Ahead of the <span className="text-gradient">Curve</span></h2>
             <p className="text-white/50 mb-8 max-w-md mx-auto text-lg">
@@ -61,9 +85,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Subtle background glow for CTA */}
+          {/* Subtle background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-indigo-500/10 blur-[100px]" />
-        </section>
+        </motion.section>
       </div>
 
       <Footer />
