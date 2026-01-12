@@ -80,13 +80,13 @@ export const Hero = () => {
                     aria-labelledby="hero-actions-label"
                 >
                     <span id="hero-actions-label" className="sr-only">Navigation buttons</span>
-                    <button
-                        onClick={() => document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })}
+                    <a
+                        href="/blog"
                         className="btn-primary flex items-center gap-2"
                         aria-label="Read blog articles"
                     >
                         Read My Blog <ArrowRight size={18} aria-hidden="true" />
-                    </button>
+                    </a>
                     <button
                         onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                         className="px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all font-medium"

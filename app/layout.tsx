@@ -34,6 +34,7 @@ export const metadata: Metadata = {
         alt: "Taweechai.dev - Senior Software Developer"
       }
     ],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",

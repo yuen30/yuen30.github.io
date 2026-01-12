@@ -49,9 +49,9 @@ export const BlogGrid = () => {
                         Thoughts, insights, and practical guides on building high-performance web applications and mastering modern tech.
                     </p>
                 </div>
-                <button className="text-indigo-400 font-medium hover:text-indigo-300 transition-colors flex items-center gap-2">
+                <a href="/blog" className="text-indigo-400 font-medium hover:text-indigo-300 transition-colors flex items-center gap-2">
                     View all posts →
-                </button>
+                </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

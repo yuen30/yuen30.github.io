@@ -108,7 +108,7 @@ export default function Home() {
                 placeholder="Enter your email"
                 className="flex-grow bg-white/5 border border-white/10 rounded-full py-3 px-6 text-white focus:outline-none focus:border-indigo-500 transition-colors"
               />
-              <button className="btn-primary">Subscribe</button>
+              <a href="/blog" className="btn-primary">Browse Articles</a>
             </div>
           </div>
 

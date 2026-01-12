@@ -128,3 +128,6 @@ _01/2014 – 06/2015_
 
 - **2567** Power Automate Professional — TDEM  
 - AI & Machine Learning with Python, Blockchain — Udemy (Self-Learning)
+
+
+qwen --resume 4653b653-012e-4c74-9f2c-aaca9b59acad
