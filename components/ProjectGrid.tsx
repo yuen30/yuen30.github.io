@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ProjectCard } from "./ProjectCard";
 import { Loader2 } from "lucide-react";
 

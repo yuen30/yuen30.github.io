@@ -1,7 +1,10 @@
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+import { EnhancedHero } from "@/components/EnhancedHero";
+import { Achievements } from "@/components/Achievements";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { TechStack } from "@/components/TechStack";
+import { TechnicalDeepDive } from "@/components/TechnicalDeepDive";
+import { SuccessStories } from "@/components/SuccessStories";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { Certifications } from "@/components/Certifications";
@@ -10,6 +13,9 @@ import { Footer } from "@/components/Footer";
 import { StatisticsSection } from "@/components/StatisticsSection";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import { ContactSection } from "@/components/ContactSection";
+import { FutureGoals } from "@/components/FutureGoals";
+import { PersonalMission } from "@/components/PersonalMission";
+import { CollaborationCTA } from "@/components/CollaborationCTA";
 
 export default function Home() {
   return (
@@ -23,10 +29,15 @@ export default function Home() {
       <Navbar />
 
       <div className="relative z-10 space-y-16">
-        <Hero />
-        <StatisticsSection />
+        <EnhancedHero />
+        <Achievements />
+        <SuccessStories />
         <ExperienceTimeline />
         <TechStack />
+        <TechnicalDeepDive />
+        <FutureGoals />
+        <PersonalMission />
+        <CollaborationCTA />
         <ProjectGrid />
         <Certifications />
         <BlogGrid />

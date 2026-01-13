@@ -1,5 +1,7 @@
-import { ProjectCard } from '@/components/ProjectCard';
-import { motion } from 'framer-motion';
+"use client";
+
+import { FeaturedProjectCard } from '@/components/FeaturedProjectCard';
+import { motion } from "motion/react";
 
 const projects = [
   {
@@ -66,7 +68,11 @@ export default function ProjectsPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+            <FeaturedProjectCard 
+              key={index} 
+              project={project}
+              index={index}
+            />
           ))}
         </motion.div>
       </div>
