@@ -19,25 +19,39 @@ interface SearchBarProps {
 
 export const SearchBar = ({ posts }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(posts);
 
-  // Filter posts based on search term
+  const normalizedPosts = useMemo(
+    () =>
+      posts.map((post) => ({
+        ...post,
+        date: new Date(post.date).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        }),
+      })),
+    [posts]
+  );
+
   useEffect(() => {
+    const searchablePosts = normalizedPosts;
+
     if (!searchTerm.trim()) {
-      setFilteredPosts(posts);
+      setFilteredPosts(searchablePosts);
       return;
     }
 
     const lowercasedTerm = searchTerm.toLowerCase();
-    const filtered = posts.filter(post => 
-      post.title.toLowerCase().includes(lowercasedTerm) ||
-      post.excerpt.toLowerCase().includes(lowercasedTerm) ||
-      post.category.toLowerCase().includes(lowercasedTerm)
+    const filtered = searchablePosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(lowercasedTerm) ||
+        post.excerpt.toLowerCase().includes(lowercasedTerm) ||
+        post.category.toLowerCase().includes(lowercasedTerm)
     );
 
     setFilteredPosts(filtered);
-  }, [searchTerm, posts]);
+  }, [searchTerm, normalizedPosts]);
 
   const handleClear = () => {
     setSearchTerm('');
@@ -57,8 +71,6 @@ export const SearchBar = ({ posts }: SearchBarProps) => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onFocus={() => setIsSearching(true)}
-            onBlur={() => setTimeout(() => setIsSearching(false), 200)}
             placeholder="Search articles by title, category, or content..."
             className="w-full pl-12 pr-10 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             aria-label="Search blog posts"
@@ -75,14 +87,18 @@ export const SearchBar = ({ posts }: SearchBarProps) => {
         </div>
       </div>
 
-      {(hasSearched && !hasResults) ? (
+      {hasSearched && !hasResults ? (
         <div className="text-center py-12">
-          <p className="text-white/60 text-lg">No articles found matching "{searchTerm}"</p>
-          <p className="text-white/40 mt-2">Try different keywords or browse all articles</p>
+          <p className="text-white/60 text-lg">
+            No articles found matching "{searchTerm}"
+          </p>
+          <p className="text-white/40 mt-2">
+            Try different keywords or browse all articles
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post, index) => (
+          {filteredPosts.map((post) => (
             <BlogCard key={post.slug} {...post} />
           ))}
         </div>

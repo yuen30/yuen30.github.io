@@ -53,37 +53,31 @@ export const ShareButtons = ({ title, url, className = '' }: ShareButtonsProps) 
       >
         <Share2 size={18} />
       </button>
-      
-      <a
-        href={twitterUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+
+      <button
+        onClick={() => window.open(twitterUrl, '_blank', 'noopener,noreferrer')}
         className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
         aria-label="Share on Twitter"
       >
         <span className="text-[#1DA1F2]">X</span>
-      </a>
-      
-      <a
-        href={linkedinUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      </button>
+
+      <button
+        onClick={() => window.open(linkedinUrl, '_blank', 'noopener,noreferrer')}
         className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
         aria-label="Share on LinkedIn"
       >
         <span className="text-[#0077B5]">in</span>
-      </a>
-      
-      <a
-        href={facebookUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      </button>
+
+      <button
+        onClick={() => window.open(facebookUrl, '_blank', 'noopener,noreferrer')}
         className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
         aria-label="Share on Facebook"
       >
         <span>f</span>
-      </a>
-      
+      </button>
+
       <button
         onClick={handleCopyLink}
         className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center gap-1"
