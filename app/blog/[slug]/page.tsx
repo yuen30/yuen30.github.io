@@ -1,75 +1,53 @@
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
-import fs from 'fs';
-import path from 'path';
+import { Breadcrumb } from '@/components/Breadcrumb';
+import { ShareButtons } from '@/components/ShareButtons';
+import { BlogLayout } from '@/components/blog/BlogLayout';
+import { getAllPosts, getPostModule } from '@/lib/posts';
+import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
-
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  try {
-    const { default: Post } = await import('@/content/' + slug + '.mdx');
-
-    return (
-      <main className='min-h-screen relative'>
-        <div className='mesh-bg opacity-30'>
-          <div className='mesh-blob bg-indigo-600/20 top-[10%] left-[10%]' />
-          <div className='mesh-blob bg-purple-600/20 bottom-[20%] right-[15%]' />
-        </div>
-
-        <Navbar />
-
-        <div className='relative z-10 pt-32 pb-20 px-6'>
-          <article className='max-w-3xl mx-auto'>
-            <Link
-              href='/'
-              className='inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-12 transition-colors group'
-            >
-              <ArrowLeft size={18} className='group-hover:-translate-x-1 transition-transform' />
-              Back to Home
-            </Link>
-
-            <div className='prose prose-invert prose-indigo lg:prose-xl max-w-none'>
-              <Post />
-            </div>
-          </article>
-        </div>
-
-        <Footer />
-      </main>
-    );
-  } catch (error) {
-    return (
-      <div className='min-h-screen flex items-center justify-center p-6 text-center'>
-        <div>
-          <h1 className='text-4xl font-bold mb-4'>Post Not Found</h1>
-          <p className='text-white/40 mb-8'>The article you are looking for does not exist.</p>
-          <Link href='/' className='btn-primary'>Return Home</Link>
-        </div>
-      </div>
-    );
-  }
+interface PostPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
 export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
+
   try {
-    const contentPath = path.join(process.cwd(), 'content');
-    const files = fs.readdirSync(contentPath);
-    
-    return files
-      .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
-      .map((file) => ({
-        slug: file.replace(/\.mdx?$/, ''),
-      }));
-  } catch (e) {
-    console.error('Error in generateStaticParams:', e);
-    return [];
+    const { default: MDXContent, metadata } = await getPostModule(slug);
+    const fullUrl = `https://taweechai.dev/blog/${slug}`;
+
+    return (
+      <BlogLayout
+        title={metadata.title}
+        excerpt={metadata.excerpt}
+        metadata={metadata}
+        breadcrumbs={
+          <Breadcrumb
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: metadata.title || slug },
+            ]}
+          />
+        }
+        actions={<ShareButtons title={metadata.title} url={fullUrl} className="flex gap-2" />}
+      >
+        <MDXContent />
+
+        <footer className="mt-16 pt-8 border-t border-white/10">
+          <ShareButtons title={metadata.title} url={fullUrl} className="flex gap-2" />
+        </footer>
+      </BlogLayout>
+    );
+  } catch (error) {
+    notFound();
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Github, Star, Code, ArrowUpRight } from "lucide-react";
 
 interface ProjectCardProps {
